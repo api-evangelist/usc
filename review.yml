@@ -1,0 +1,53 @@
+---
+name: University of Southern California
+description: University of Southern California public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      USC has no centralized public API developer portal. The most concretely
+      documented public web service is the Schedule of Classes (SOC) Web Services
+      API, referenced by USC documentation URLs and a publicly observed archive API
+      endpoint pattern, but the host (web-app.usc.edu) refused connections from this
+      review's network at probe time, so endpoints could not be independently
+      verified live. The official website, USC digital library, course catalogue,
+      and departmental/research GitHub organizations (uscdatascience, isi-usc-edu)
+      resolved successfully. No endpoints were fabricated; only confirmed-resolving
+      or USC-documented URLs are recorded.
+    endpoints:
+      - url: https://www.usc.edu/
+        status: 200
+        note: Official institutional website, resolves.
+      - url: https://classes.usc.edu/
+        status: 200
+        note: Online Schedule of Classes (SOC API consumer), resolves.
+      - url: https://catalogue.usc.edu/
+        status: 200
+        note: USC course catalogue, resolves.
+      - url: https://digitallibrary.usc.edu/
+        status: 200
+        note: USC Digital Library, resolves.
+      - url: https://web-app.usc.edu/web/soc/help
+        status: 0
+        note: SOC Web Services API help/docs; documented by USC but host refused connection at probe time.
+      - url: https://web-app.usc.edu/web/soc/docs/html/
+        status: 0
+        note: SOC API source documentation; host refused connection at probe time.
+      - url: https://web-app.usc.edu/ws/soc_archive/soc/api/classes/mkt/20102
+        status: 0
+        note: Publicly observed SOC archive API endpoint pattern; host refused connection at probe time.
+      - url: https://github.com/uscdatascience
+        status: 200
+        note: USC Information Retrieval & Data Science research org, resolves.
+      - url: https://github.com/isi-usc-edu
+        status: 200
+        note: USC Information Sciences Institute GitHub org, resolves.
+      - url: https://www.linkedin.com/school/university-of-southern-california/
+        status: 999
+        note: Official LinkedIn school page; LinkedIn anti-bot returns 999, page exists.
+      - url: https://twitter.com/USC
+        status: 200
+        note: Official USC account on X/Twitter, resolves.

@@ -1,0 +1,70 @@
+---
+aid: usc
+name: University of Southern California
+description: >-
+  The University of Southern California (USC) is a private research university in
+  Los Angeles, California, ranked #59 in the QS World University Rankings 2025.
+  USC does not operate a single, centralized public API developer portal. Its most
+  concretely documented public web service is the Schedule of Classes (SOC) Web
+  Services API, which exposes course, department, and term data used to power the
+  online schedule of classes. Beyond that, USC's programmatic and data footprint is
+  distributed across departmental and research GitHub organizations (such as the USC
+  Information Retrieval & Data Science group and the USC Information Sciences
+  Institute) and library/digital-collection systems, rather than a unified API
+  catalog.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - United States
+  - California
+  - Courses
+apis:
+  - aid: usc:schedule-of-classes
+    name: USC Schedule of Classes (SOC) Web Services API
+    description: >-
+      A web service for integrating USC Schedule of Classes content (terms,
+      departments, courses, and sections) into other web sites and applications.
+      The online USC Schedule of Classes is itself a consumer of this SOC API.
+      Documentation is published by USC and an archive endpoint pattern of the form
+      /ws/soc_archive/soc/api/classes/{dept}/{term} has been observed publicly. The
+      primary host (web-app.usc.edu) was not reachable from this review's network at
+      probe time, so endpoint availability could not be independently confirmed.
+    humanURL: https://web-app.usc.edu/web/soc/help
+    tags: [ Courses, Schedule, Education, Higher Education ]
+    properties:
+      - type: Documentation
+        url: https://web-app.usc.edu/web/soc/help
+      - type: Documentation
+        url: https://web-app.usc.edu/web/soc/docs/html/
+common:
+  - type: Website
+    url: https://www.usc.edu/
+  - type: GitHub
+    url: https://github.com/uscdatascience
+  - type: GitHub
+    url: https://github.com/isi-usc-edu
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/university-of-southern-california/
+  - type: Twitter
+    url: https://twitter.com/USC
+  - type: Plans
+    url: plans/usc-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/usc-rate-limits.yml
+  - type: FinOps
+    url: finops/usc-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
