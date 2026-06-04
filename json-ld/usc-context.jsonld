@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "usc": "https://www.usc.edu/ns#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "sameAs": "schema:sameAs",
+    "Organization": "schema:CollegeOrUniversity",
+    "api": {
+      "@id": "usc:api",
+      "@container": "@set"
+    },
+    "API": {
+      "@id": "usc:API"
+    },
+    "humanURL": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "baseURL": {
+      "@id": "usc:baseURL",
+      "@type": "@id"
+    },
+    "term": "schema:CourseInstance",
+    "department": "schema:Organization",
+    "course": "schema:Course",
+    "section": "schema:CourseInstance"
+  },
+  "@type": "Organization",
+  "name": "University of Southern California",
+  "url": "https://www.usc.edu/",
+  "description": "Private research university in Los Angeles, California.",
+  "sameAs": [
+    "https://www.linkedin.com/school/university-of-southern-california/",
+    "https://twitter.com/USC",
+    "https://github.com/uscdatascience",
+    "https://github.com/isi-usc-edu"
+  ],
+  "api": [
+    {
+      "@type": "API",
+      "name": "USC Schedule of Classes (SOC) Web Services API",
+      "humanURL": "https://web-app.usc.edu/web/soc/help",
+      "description": "Web service exposing terms, departments, courses, and sections of the USC Schedule of Classes."
+    }
+  ]
+}
