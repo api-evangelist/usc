@@ -5,10 +5,10 @@
       "source": "https://www.usc.edu/",
       "feed_url": "https://news.usc.edu/feed/",
       "title": "USC News",
-      "saved": 0,
-      "method": "none"
+      "saved": 9,
+      "method": "feed"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-03T00:00:00Z"
+  "post_count": 9,
+  "fetched": "2026-06-07T00:00:00Z"
 }
