@@ -3,12 +3,12 @@
   "feeds": [
     {
       "source": "https://www.usc.edu/",
-      "feed_url": "https://news.usc.edu/feed/",
-      "title": "USC News",
-      "saved": 9,
+      "feed_url": "https://today.usc.edu/feed/",
+      "title": "USC Today",
+      "saved": 20,
       "method": "feed"
     }
   ],
-  "post_count": 9,
-  "fetched": "2026-06-07T00:00:00Z"
+  "post_count": 29,
+  "fetched": "2026-06-21T17:00:00Z"
 }
