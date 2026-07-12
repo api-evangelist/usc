@@ -44,6 +44,8 @@ apis:
       - type: Documentation
         url: https://web-app.usc.edu/web/soc/docs/html/
 common:
+  - type: DomainSecurity
+    url: security/usc-domain-security.yml
   - type: Website
     url: https://www.usc.edu/
   - type: GitHub
