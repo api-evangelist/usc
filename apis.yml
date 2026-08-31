@@ -1,17 +1,25 @@
 ---
 aid: usc
 name: University of Southern California
+x-type: university
+x-category: Private Research University
 description: >-
-  The University of Southern California (USC) is a private research university in
-  Los Angeles, California, ranked #59 in the QS World University Rankings 2025.
-  USC does not operate a single, centralized public API developer portal. Its most
-  concretely documented public web service is the Schedule of Classes (SOC) Web
-  Services API, which exposes course, department, and term data used to power the
-  online schedule of classes. Beyond that, USC's programmatic and data footprint is
-  distributed across departmental and research GitHub organizations (such as the USC
-  Information Retrieval & Data Science group and the USC Information Sciences
-  Institute) and library/digital-collection systems, rather than a unified API
-  catalog.
+  The University of Southern California is a private research university in Los Angeles,
+  ranked #59 in the QS World University Rankings 2025. USC operates no central developer
+  portal, publishes no OpenAPI, AsyncAPI or apis.json anywhere on its public surface, and
+  issues no self-service API keys — www.usc.edu serves neither llms.txt nor
+  .well-known/security.txt, and api.usc.edu is a default IIS Windows Server placeholder page
+  last modified in 2019, not an API. What USC does operate, verified live on 2026-08-30, is
+  three genuinely institutional machine surfaces: a Shibboleth SAML 2.0 identity provider whose
+  metadata is published unauthenticated at shibboleth.usc.edu and registered with InCommon as
+  urn:mace:incommon:usc.edu; a DataCite direct membership under its own name that carries
+  eleven repositories and 1.5 million minted DOIs; and the FaceBase craniofacial data hub,
+  whose keyless ERMrest REST API is built and run by USC's own Information Sciences Institute
+  on ISI's Apache-2.0 DERIVA stack. Everything else that looks like a USC API is a vendor's
+  contract running under USC's name and is recorded here as a tenant relationship, never as
+  USC's engineering: Figshare, Ex Libris Primo/Alma, Orange Logic Cortex and Instructure
+  Canvas. The Schedule of Classes Web Services API that this profile previously led with is
+  gone — web-app.usc.edu no longer resolves at all.
 type: Index
 deliveryModel:
   model: saas
@@ -41,59 +49,398 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/usc.png
 url: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Research
-  - United States
-  - California
-  - Courses
+- University
+- Higher Education
+- Education
+- Research
+- Private Research University
+- Association of American Universities
+- United States
+- California
+- Los Angeles
+- Identity Federation
+- Research Data
+- Research Repository
+- Library
+- Course Catalog
+- Research Computing
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    USC publishes no API contract of any kind — no OpenAPI, AsyncAPI, GraphQL SDL, Postman
+    collection or apis.json exists on any usc.edu host, no USC GitHub organization contains one
+    (code search over USCDataScience, isi-usc-edu, usc-its and uscbiostats returns 0 hits for
+    filename:openapi), and there is no developer portal, no key issuance and no rate-limit
+    documentation. Three institution-operated machine surfaces were found and verified live on
+    2026-08-30 and are recorded as USC's: the Shibboleth/SAML 2.0 identity provider metadata at
+    shibboleth.usc.edu plus its InCommon registration, the DataCite direct membership (provider
+    id usc, 11 repositories, 1,513,793 DOIs), and the FaceBase ERMrest catalog API, which is
+    keyless and returns 923,861 bytes of live JSON schema and whose own annotations are
+    namespaced tag:isrd.isi.edu — USC ISI's Informatics Systems Research Division, which
+    authors the Apache-2.0 ERMrest server. Four vendor platforms are recorded as tenant
+    relationships and NOT as USC contracts: Figshare (usc.figshare.com), Ex Libris Primo/Alma
+    (uosc.primo.exlibrisgroup.com, view 01USC_INST:01USC), Orange Logic Cortex
+    (digitallibrary.usc.edu/API, which is a real REST API but returns 401 "you must be signed
+    in ... request a token through the Authentication" with ProviderIdentity USC-AWS-ORG-209),
+    and Instructure Canvas (usc.instructure.com). The Schedule of Classes Web Services API this
+    profile previously led with is retired: web-app.usc.edu returns no A record from either
+    8.8.8.8 or 1.1.1.1, so both Documentation pointers it carried were dead and have been
+    removed. Its successor, classes.usc.edu, is an Angular single-page application whose backend
+    is unpublished — /api/* returns bare 404s from a real backend while every non-/api path soft
+    -200s the SPA shell. State is `covered` because two institution-operated machine surfaces were
+    reached keyless and read in full, not because a portal was found — there is none. The one
+    full REST API on a USC-owned host, the Orange Logic Cortex API, is the single gated surface:
+    it exists and answers, but requires a token nobody outside USC can request. gateway.usc.edu and registrar.usc.edu resolve but do not answer
+    publicly; libraries.usc.edu returns a 403 "old-browser" challenge to every user agent tried,
+    which is a block on us rather than a finding about USC.
+  generated: '2026-08-30'
+  method: probed
+  evidence:
+  - url: https://shibboleth.usc.edu/idp/shibboleth
+    status: 200
+  - url: https://mdq.incommon.org/entities/%7Bsha1%7D7ea68903620195ae353c8c2b874ca3508307319a
+    status: 200
+  - url: https://mdq.incommon.org/entities/%7Bsha1%7D6ec63752631a031faeff5acd280a6080846b43df
+    status: 404
+  - url: https://my.usc.edu/
+    status: 200
+  - url: https://api.datacite.org/providers/usc
+    status: 200
+  - url: https://api.datacite.org/clients?provider-id=usc
+    status: 200
+  - url: https://api.datacite.org/dois?provider-id=usc
+    status: 200
+  - url: https://www.facebase.org/ermrest/catalog/1
+    status: 200
+  - url: https://www.facebase.org/ermrest/catalog/1/schema
+    status: 200
+  - url: https://digitallibrary.usc.edu/API/search/v3.0/search?query=test&format=json
+    status: 401
+  - url: https://digitallibrary.usc.edu/oai/oai.aspx?verb=Identify
+    status: 400
+  - url: https://usc.figshare.com/
+    status: 202
+  - url: https://uosc.primo.exlibrisgroup.com/primaws/rest/pub/configuration/vid/01USC_INST:01USC
+    status: 200
+  - url: https://usc.instructure.com/
+    status: 200
+  - url: https://na01.alma.exlibrisgroup.com/view/oai/01USC_INST/request?verb=Identify
+    status: 200
+  - url: https://api.crossref.org/members?query=university+of+southern+california
+    status: 200
+  - url: https://classes.usc.edu/
+    status: 200
+  - url: https://classes.usc.edu/api/terms
+    status: 404
+  - url: https://web-app.usc.edu/web/soc/help
+    status: 0
+  - url: https://web-app.usc.edu/web/soc/docs/html/
+    status: 0
+  - url: https://api.usc.edu/
+    status: 200
+  - url: https://www.usc.edu/llms.txt
+    status: 404
+  - url: https://www.usc.edu/.well-known/security.txt
+    status: 404
+  - url: https://libraries.usc.edu/
+    status: 403
+  - url: https://repository.usc.edu/
+    status: 200
+  - url: https://www.carc.usc.edu/
+    status: 200
 apis:
-  - aid: usc:schedule-of-classes
-    name: USC Schedule of Classes (SOC) Web Services API
-    description: >-
-      A web service for integrating USC Schedule of Classes content (terms,
-      departments, courses, and sections) into other web sites and applications.
-      The online USC Schedule of Classes is itself a consumer of this SOC API.
-      Documentation is published by USC and an archive endpoint pattern of the form
-      /ws/soc_archive/soc/api/classes/{dept}/{term} has been observed publicly. The
-      primary host (web-app.usc.edu) was not reachable from this review's network at
-      probe time, so endpoint availability could not be independently confirmed.
-    humanURL: https://web-app.usc.edu/web/soc/help
-    tags: [ Courses, Schedule, Education, Higher Education ]
-    properties:
-      - type: Documentation
-        url: https://web-app.usc.edu/web/soc/help
-      - type: Documentation
-        url: https://web-app.usc.edu/web/soc/docs/html/
-common:
-  - type: DomainSecurity
-    url: security/usc-domain-security.yml
+- aid: usc:shibboleth-idp
+  name: USC Shibboleth Identity Provider (SAML 2.0 Metadata)
+  x-operator: institution
+  description: >-
+    USC's production single sign-on identity provider, operated by USC Information Technology
+    Services on USC's own host, publishing its SAML 2.0 metadata unauthenticated. GET
+    https://shibboleth.usc.edu/idp/shibboleth returns 200 application/xml, 17,096 bytes, titled
+    "USC Metadata" with Name="usc-idp-metadata" and validUntil 2028-04-06. The EntitiesDescriptor
+    carries an IDPSSODescriptor for entityID https://shibboleth.usc.edu/shibboleth-idp supporting
+    SAML 2.0, SAML 1.1 and Shibboleth 1.0, with shibmd:Scope usc.edu and an X509 certificate
+    issued to O=University of Southern California, OU=Information Technology Services. USC's
+    federation registration resolves independently through InCommon's metadata query service as
+    entityID urn:mace:incommon:usc.edu (200, 13,035 bytes of signed metadata), binding SSO to
+    /idp/profile/SAML2/POST/SSO, /POST-SimpleSign/SSO and /Redirect/SSO on shibboleth.usc.edu and
+    artifact resolution to shibboleth.usc.edu:8444. https://my.usc.edu/ redirects into this IdP,
+    confirming it is the live login path and not a stale entry. This is machine-readable,
+    institution-operated and unambiguously USC's own — it is the strongest programmable surface
+    USC publishes.
+  humanURL: https://itservices.usc.edu/
+  baseURL: https://shibboleth.usc.edu/idp
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - Single Sign-On
+  - InCommon
+  properties:
+  - type: APIReference
+    url: https://shibboleth.usc.edu/idp/shibboleth
+  - type: Documentation
+    url: https://itservices.usc.edu/
+- aid: usc:facebase-ermrest
+  name: FaceBase ERMrest Data API
+  x-operator: institution
+  description: >-
+    Keyless, read-only JSON REST API of the FaceBase craniofacial data hub, an NIDCR-funded
+    resource led from USC and engineered by USC's Information Sciences Institute. GET
+    https://www.facebase.org/ermrest/catalog/1 returns 200 application/json with the catalog
+    root; GET https://www.facebase.org/ermrest/catalog/1/schema returns 200 application/json,
+    923,861 bytes, the full introspectable relational model. Attribution is settled from what
+    the surface says about itself rather than from the hostname: the catalog's own annotation
+    keys are namespaced tag:isrd.isi.edu (USC ISI's Informatics Systems Research Division), the
+    responses carry a deriva-client-context CORS header, and the ERMrest server itself is USC
+    ISI's Apache-2.0 project at github.com/informatics-isi-edu/ermrest, actively maintained as of
+    2026-06-10. Its DOIs are minted under USC's own DataCite provider account as client
+    usc.facebase (1,410 DOIs). Recorded as institution rather than tenant on that basis, with the
+    caveat stated plainly: facebase.org is a consortium domain, not a usc.edu registrable domain,
+    so a host-only verdict would not reach this conclusion. No OpenAPI is saved — ERMrest is a
+    generic protocol shared by every DERIVA deployment (gudmap.org and atlas-d2k.org answer the
+    same paths), so the product contract belongs with the software, while this deployment, its
+    data and its DOIs are USC's.
+  humanURL: https://www.facebase.org/about
+  baseURL: https://www.facebase.org/ermrest/catalog/1
+  tags:
+  - Research Data
+  - ERMrest
+  - DERIVA
+  - Craniofacial
+  - REST
+  - Open Data
+  properties:
+  - type: APIReference
+    url: https://www.facebase.org/ermrest/catalog/1/schema
+  - type: SourceCode
+    url: https://github.com/informatics-isi-edu/ermrest
   - type: Website
-    url: https://www.usc.edu/
-  - type: GitHub
-    url: https://github.com/uscdatascience
-  - type: GitHub
-    url: https://github.com/isi-usc-edu
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-of-southern-california/
-  - type: Twitter
-    url: https://twitter.com/USC
-  - type: Plans
-    url: plans/usc-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/usc-rate-limits.yml
-  - type: FinOps
-    url: finops/usc-finops.yml
-  - type: Review
-    url: review.yml
-  - type: Blog
-    url: blogs/blogs.json
-  - type: JSONLD
-    url: json-ld/usc-context.jsonld
+    url: https://www.facebase.org/
+- aid: usc:datacite-membership
+  name: USC DataCite DOI Registration (Provider Account)
+  x-operator: tenant
+  description: >-
+    USC holds a DataCite direct membership in its own name and mints DOIs for eleven USC
+    repositories under it. GET https://api.datacite.org/providers/usc returns 200 with name
+    "University of Southern California", memberType direct_member, organizationType
+    academicInstitution, joined 2017-06-02 and rorId https://ror.org/03taz7m60. The account
+    carries 1,513,793 DOIs across usc.dl (USC Digital Library, 1,511,764), usc.facebase (1,410),
+    usc.ini (Stevens Neuroimaging and Informatics Institute, 284), usc.isi (123), usc.gateway
+    (Gateway to Global Aging Data, 105), usc.kidney (57), usc.metrans (35), usc.dataverse (9),
+    usc.cesr (6), usc.pgahp and usc.test. Recorded as tenant, not institution: the REST API is
+    DataCite's contract and every DataCite member shares it, so no spec is saved here. What is
+    USC's is the account, the eleven repositories and the DOIs — a real and substantial
+    institutional fact that this profile carried nowhere before.
+  humanURL: https://research.usc.edu/research-and-scholarship/digital-usc/
+  baseURL: https://api.datacite.org
+  tags:
+  - Research Data
+  - DataCite
+  - DOI
+  - Persistent Identifiers
+  - Research Repository
+  properties:
+  - type: APIReference
+    url: https://api.datacite.org/providers/usc
+  - type: Documentation
+    url: https://api.datacite.org/clients?provider-id=usc
+- aid: usc:digital-library-cortex
+  name: USC Digital Library API (Orange Logic Cortex)
+  x-operator: tenant
+  description: >-
+    A live, token-gated REST API on USC's own host running Orange Logic's Cortex digital asset
+    platform. GET https://digitallibrary.usc.edu/API/search/v3.0/search?query=test&format=json
+    returns 401 application/json with a fully formed Cortex envelope — APIRequestInfo naming
+    ProviderVersion PRINCETON.R6.2293U.273257, ProviderIdentity USC-AWS-ORG-209, Module search,
+    APIVersion v3.0 — and the message "you must be signed in to access to this functionality.
+    Please request a token through the Authentication." /API/Authentication/v1.0/Login answers
+    405 to GET, confirming the auth resource exists. The deployment, the host, the 1.5 million
+    DOIs it mints as DataCite client usc.dl and the collections themselves are USC's; the
+    contract is Orange Logic's product API, identical across every Cortex customer, so no spec is
+    saved under USC. Tokens are not self-service and there is no public API documentation on any
+    USC host, so this surface is recorded but not readable.
+  humanURL: https://digitallibrary.usc.edu/
+  baseURL: https://digitallibrary.usc.edu/API/search/v3.0/search
+  tags:
+  - Research Repository
+  - Digital Collections
+  - Orange Logic
+  - Cortex
+  - Library
+  properties:
+  - type: APIReference
+    url: https://digitallibrary.usc.edu/API/search/v3.0/search?query=test&format=json
+  - type: Website
+    url: https://digitallibrary.usc.edu/
+- aid: usc:figshare-repository
+  name: USC Figshare Research Repository (Tenant)
+  x-operator: tenant
+  description: >-
+    USC Libraries offers Figshare to USC researchers as its data-output repository for datasets,
+    posters and presentations, at the institution-specific tenant usc.figshare.com. Probed
+    2026-08-30 the host answers 202 behind an AWS WAF JavaScript challenge (window.awsWafCookie),
+    which is a block on automated clients rather than an absence — the tenant is live. Recorded
+    as a relationship only. No Figshare specification is saved under USC: api.figshare.com/v2 is
+    the generic vendor contract every Figshare customer shares, and attributing it to an
+    institution is precisely the misattribution this profile exists to avoid — one Figshare
+    contract was previously credited to twenty-five universities across this cohort. The data and
+    the DOIs are USC's; the contract is Figshare's and belongs in Figshare's own repo.
+  humanURL: https://libguides.usc.edu/resdata
+  baseURL: https://usc.figshare.com
+  tags:
+  - Research Repository
+  - Research Data
+  - Figshare
+  - Open Access
+  properties:
+  - type: Website
+    url: https://usc.figshare.com/
+  - type: Documentation
+    url: https://libguides.usc.edu/resdata
+- aid: usc:primo-discovery
+  name: USC Libraries Discovery (Ex Libris Primo VE, Tenant)
+  x-operator: tenant
+  description: >-
+    USC Libraries' catalog and discovery layer runs on Ex Libris Primo VE as institution view
+    01USC_INST:01USC at uosc.primo.exlibrisgroup.com. The public Primo configuration REST
+    endpoint /primaws/rest/pub/configuration/vid/01USC_INST:01USC returns 200 JSON naming
+    "Southern California" and linking libraries.usc.edu, which is how this view was
+    disambiguated from 61USC_INST:61USC — that one is the University of South Carolina, a
+    different institution whose Ex Libris code differs only in its numeric prefix. Recorded as a
+    relationship: the host is Ex Libris's, the contract is Primo's and is shared by every Primo
+    customer, and no Ex Libris specification is saved under USC. USC's Alma institution code is
+    not exposed through the generic Alma OAI-PMH gateways — na01 and na02
+    /view/oai/01USC_INST/request?verb=Identify both answer 200 with "Institution code 01USC_INST
+    is invalid" — so USC publishes no harvestable library metadata feed.
+  humanURL: https://libguides.usc.edu/az/databases
+  baseURL: https://uosc.primo.exlibrisgroup.com
+  tags:
+  - Library
+  - Library Catalog
+  - Discovery
+  - Ex Libris
+  - Primo
+  properties:
+  - type: Website
+    url: https://uosc.primo.exlibrisgroup.com/discovery/search?vid=01USC_INST:01USC
+  - type: APIReference
+    url: https://uosc.primo.exlibrisgroup.com/primaws/rest/pub/configuration/vid/01USC_INST:01USC
+- aid: usc:canvas-lms
+  name: USC Canvas Learning Management System (Instructure, Tenant)
+  x-operator: tenant
+  description: >-
+    USC's learning management system is an Instructure Canvas tenant at usc.instructure.com,
+    verified live 2026-08-30 (200, redirecting to /login/canvas). Canvas exposes a substantial
+    REST API and is an LTI 1.3 platform, but both are Instructure's contract and Instructure's
+    conformance, shared by every Canvas customer, and USC publishes no LTI registration, tool
+    configuration, JWKS or Canvas API documentation on any public USC host. Recorded as a
+    relationship only; no Canvas specification is saved under USC and no LTI or Caliper
+    conformance is credited to USC on the strength of the vendor's capabilities.
+  humanURL: https://itservices.usc.edu/
+  baseURL: https://usc.instructure.com
+  tags:
+  - Learning Management System
+  - Canvas
+  - Instructure
+  - Course Delivery
+  properties:
+  - type: Website
+    url: https://usc.instructure.com/
+- aid: usc:schedule-of-classes
+  name: USC Schedule of Classes (SOC) — Web Services API, retired
+  x-operator: institution
+  description: >-
+    USC's Schedule of Classes Web Services API, which exposed terms, departments, courses and
+    sections and once powered the online schedule, is retired. Its host, web-app.usc.edu, no
+    longer resolves at all: authoritative queries to 8.8.8.8 and 1.1.1.1 both return NOERROR with
+    zero A records, while usc.edu, classes.usc.edu, shibboleth.usc.edu and api.usc.edu all
+    resolve normally from the same resolvers. Both Documentation pointers this profile previously
+    carried — /web/soc/help and /web/soc/docs/html/ — were therefore dead and have been removed;
+    search engines still index them, which is exactly why link presence is not evidence. The
+    schedule now runs at classes.usc.edu as an Angular single-page application, verified live
+    2026-08-30. Its backend is not published: every /api/* path returns a bare 404 from a real
+    backend while every other path soft-200s the 105KB SPA shell, the compiled bundle contains no
+    API base URL (it is injected at runtime, with an interceptor that stamps X-CSRF on any
+    *.usc.edu request), and USC has announced no successor API. The entry is kept, and kept
+    honest, because the retirement of a real institutional surface is itself the finding.
+  humanURL: https://classes.usc.edu/
+  tags:
+  - Course Catalog
+  - Schedule
+  - Registrar
+  - Retired
+  properties:
+  - type: Website
+    url: https://classes.usc.edu/
+  - type: Documentation
+    url: https://arr.usc.edu/schedule-of-classes/
+common:
+- type: Website
+  url: https://www.usc.edu/
+- type: IdentityFederation
+  url: https://shibboleth.usc.edu/idp/shibboleth
+- type: ResearchRepository
+  url: https://repository.usc.edu/
+- type: ResearchRepository
+  url: https://usc.figshare.com/
+- type: LibraryCatalog
+  url: https://uosc.primo.exlibrisgroup.com/discovery/search?vid=01USC_INST:01USC
+- type: CourseCatalog
+  url: https://classes.usc.edu/
+- type: Documentation
+  url: https://catalogue.usc.edu/
+- type: ResearchComputing
+  url: https://www.carc.usc.edu/
+- type: Documentation
+  url: https://www.carc.usc.edu/user-guides
+- type: AIPolicy
+  url: https://ai.usc.edu/policy-and-governance/
+- type: AITooling
+  url: https://ai.usc.edu/tools/
+- type: APIReference
+  url: https://www.facebase.org/ermrest/catalog/1/schema
+- type: Support
+  url: https://itservices.usc.edu/
+- type: GitHubOrganization
+  url: https://github.com/informatics-isi-edu
+- type: GitHub
+  url: https://github.com/USCDataScience
+- type: GitHub
+  url: https://github.com/isi-usc-edu
+- type: GitHub
+  url: https://github.com/usc-its
+- type: PrivacyPolicy
+  url: https://www.usc.edu/privacy-notice/
+- type: Accessibility
+  url: https://accessibility.usc.edu/accessibility-at-usc/digital-accessibility/
+- type: Policies
+  url: https://policy.usc.edu/
+- type: Blog
+  url: https://news.usc.edu/
+- type: LinkedIn
+  url: https://www.linkedin.com/school/university-of-southern-california/
+- type: Twitter
+  url: https://twitter.com/USC
+- type: Conformance
+  url: conformance/usc-conformance.yml
+- type: DomainSecurity
+  url: security/usc-domain-security.yml
+- type: Plans
+  url: plans/usc-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/usc-rate-limits.yml
+- type: FinOps
+  url: finops/usc-finops.yml
+- type: Review
+  url: review.yml
+- type: JSONLD
+  url: json-ld/usc-context.jsonld
+- type: BlogRSS
+  url: blogs/blogs.json
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
