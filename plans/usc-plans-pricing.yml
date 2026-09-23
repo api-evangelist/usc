@@ -6,6 +6,9 @@ providerId: usc
 created: '2026-06-03'
 modified: '2026-06-03'
 reconciled: false
+generated: '2026-06-03'
+method: derived
+source: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
 tags:
 - Education
 - Higher Education
@@ -13,10 +16,12 @@ tags:
 - Plans
 description: >-
   University of Southern California is a non-commercial higher-education institution; its APIs are not sold
-  as a commercial product. Public APIs (library, repository, course, and open-metadata
-  interfaces) are offered free of charge, typically for non-commercial use. Most
-  administrative and identity APIs are not openly self-service and require institutional
-  affiliation, credentials, or federation membership rather than a paid plan.
+  as a commercial product. USC publishes no price list, no plan page and no self-service key
+  issuance for any API. The institution-operated surfaces that are public - the Shibboleth/SAML
+  identity provider metadata and the FaceBase ERMrest catalog - are keyless and free. The one
+  full REST API on a USC host, the Orange Logic Cortex API at digitallibrary.usc.edu/API, is
+  free of charge but requires a token that is not self-service. Verified 2026-08-30; this file
+  describes an absence of commercial terms, not a published plan.
 notes: >-
   No published per-seat or per-call commercial pricing. "Free / Open" reflects open
   public endpoints; "Affiliation / Credentialed" reflects access gated by institutional

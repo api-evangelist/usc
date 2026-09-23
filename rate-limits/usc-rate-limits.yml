@@ -6,16 +6,22 @@ providerId: usc
 created: '2026-06-03'
 modified: '2026-06-03'
 reconciled: false
+generated: '2026-06-03'
+method: derived
+source: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
 tags:
 - Education
 - Higher Education
 - University
 - Rate Limiting
 description: >-
-  University of Southern California does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
+  University of Southern California publishes no rate-limit documentation of any kind, for any
+  surface. Corrected 2026-08-30: the previous text here cited OAI-PMH, IIIF and library
+  harvesting endpoints as the throttled surfaces, and USC operates none of them - every OAI-PMH
+  path probed on digitallibrary.usc.edu, repository.usc.edu and the Ex Libris Alma gateway for
+  institution code 01USC_INST failed. Clients of the two keyless USC surfaces that do exist
+  (shibboleth.usc.edu metadata, facebase.org ERMrest) should still back off politely and honor
+  Retry-After; no published limit governs either.
 notes: Confirm per-service limits with each API's documentation; harvest responsibly.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
@@ -25,8 +31,11 @@ limits:
 - name: Default
   scope: client
   metric: requests-per-minute
-  limit: see service documentation
-  notes: No published global limit; large harvests may be rate-limited.
+  limit: none published
+  notes: >-
+    No rate limit is published or advertised on any USC-operated surface, and no 429 or
+    RateLimit-* header was observed on any probe. Absence of a documented limit is not a
+    guarantee of an unlimited service.
 policies:
 - name: Backoff Strategy
   description: Exponential backoff with jitter; honor Retry-After; harvest during off-peak hours.

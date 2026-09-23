@@ -6,6 +6,9 @@ providerId: usc
 created: '2026-06-03'
 modified: '2026-06-03'
 reconciled: false
+generated: '2026-06-03'
+method: derived
+source: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
 tags:
 - Education
 - Higher Education

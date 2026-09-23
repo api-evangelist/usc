@@ -1,0 +1,111 @@
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of USC-operated and USC-tenanted public endpoints on 2026-08-30. No contract was
+  generated or inferred; every `conforms: true` below points at a URL that returned the cited
+  status and body at probe time.
+docs: https://itservices.usc.edu/
+note: >-
+  Conformance targets are the Kin Score `education` regime standards[]: scim, lti, oneroster,
+  ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite, crossref. Reward-only — a
+  standard USC's vendors merely support is NOT recorded as USC conformance unless USC publishes
+  evidence of the deployment itself. USC operates no OpenAPI, no AsyncAPI and no developer
+  portal, so no specification-format conformance is claimed.
+standards:
+- id: shibboleth
+  conforms: true
+  evidence: >-
+    USC operates its own Shibboleth Identity Provider and publishes its metadata unauthenticated
+    at https://shibboleth.usc.edu/idp/shibboleth (200, application/xml, 17,096 bytes). The
+    document is titled "USC Metadata", Name="usc-idp-metadata", validUntil 2028-04-06, and
+    carries <shibmd:Scope regexp="false">usc.edu</shibmd:Scope> plus a KeyDescriptor whose
+    X509 certificate subject is O=University of Southern California, OU=Information Technology
+    Services. Institution-operated: the host, the scope and the certificate are all USC's.
+- id: saml
+  conforms: true
+  evidence: >-
+    The same document is a SAML 2.0 EntitiesDescriptor
+    (urn:oasis:names:tc:SAML:2.0:metadata) with an IDPSSODescriptor advertising
+    protocolSupportEnumeration "urn:oasis:names:tc:SAML:2.0:protocol
+    urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0" for entityID
+    https://shibboleth.usc.edu/shibboleth-idp. USC's federation registration is independently
+    resolvable from the InCommon metadata query service: GET
+    https://mdq.incommon.org/entities/%7Bsha1%7D<sha1 of urn:mace:incommon:usc.edu> returns 200
+    with 13,035 bytes of signed SAML 2.0 metadata for entityID urn:mace:incommon:usc.edu,
+    binding SSO to https://shibboleth.usc.edu/idp/profile/SAML2/{POST,POST-SimpleSign,Redirect}/SSO
+    and artifact resolution to https://shibboleth.usc.edu:8444/idp/profile/SAML{1,2}/SOAP/ArtifactResolution.
+    https://my.usc.edu/ redirects into that IdP, confirming it is the production login path.
+- id: datacite
+  conforms: true
+  evidence: >-
+    USC is a DataCite direct_member in its own name, not through a vendor. GET
+    https://api.datacite.org/providers/usc returns 200 with name "University of Southern
+    California", memberType direct_member, organizationType academicInstitution, country US,
+    joined 2017-06-02, rorId https://ror.org/03taz7m60. GET
+    https://api.datacite.org/clients?provider-id=usc returns 200 with 11 repositories registered
+    under that account — usc.dl (USC Digital Library), usc.dataverse, usc.isi, usc.ini
+    (Stevens Neuroimaging and Informatics Institute), usc.cesr, usc.facebase, usc.gateway,
+    usc.kidney, usc.metrans, usc.pgahp, usc.test. GET
+    https://api.datacite.org/dois?provider-id=usc reports 1,513,793 DOIs minted under the USC
+    account, of which 1,511,764 are usc.dl. The DataCite REST API itself is DataCite's contract,
+    not USC's — what is USC's is the provider account, the eleven repositories and the DOIs.
+- id: oai-pmh
+  conforms: false
+  evidence: >-
+    No working OAI-PMH provider was found on any USC-operated host. Probed 2026-08-30:
+    https://digitallibrary.usc.edu/oai?verb=Identify 404,
+    https://digitallibrary.usc.edu/oai-pmh?verb=Identify 404,
+    https://digitallibrary.usc.edu/oai/oai.aspx?verb=Identify 400 with the plain-text body
+    "Error had occured." (the Orange Logic OAI handler is routed but not serving),
+    https://repository.usc.edu/oai 404, https://libraries.usc.edu/oai 403 (bot challenge).
+    The Ex Libris Alma OAI path for the USC institution code is not public either:
+    https://na01.alma.exlibrisgroup.com/view/oai/01USC_INST/request?verb=Identify returns 200
+    carrying an OAI error body "Institution code 01USC_INST is invalid".
+- id: crossref
+  conforms: false
+  evidence: >-
+    GET https://api.crossref.org/members?query=university+of+southern+california returns 200
+    with total-results 0. USC is not a Crossref member in its own name; its DOI registration
+    runs through DataCite (above).
+- id: orcid
+  conforms: false
+  evidence: >-
+    14,594 ORCID records self-declare a University of Southern California affiliation
+    (https://pub.orcid.org/v3.0/expanded-search/?q=affiliation-org-name:"University of Southern
+    California", 200), but that is researcher-declared, not an institutional integration. No
+    USC-operated ORCID member API deployment, ORCID Trusted Party consent flow, or
+    ORCID-configured repository endpoint was found on any USC host.
+- id: lti
+  conforms: false
+  evidence: >-
+    USC runs a Canvas tenant at https://usc.instructure.com/ (200, redirects to
+    /login/canvas). Canvas is an LTI 1.3 platform, but that is Instructure's conformance, not
+    USC's, and USC publishes no LTI platform registration, tool configuration, or JWKS on any
+    public USC host. Reward-only: not credited.
+- id: caliper
+  conforms: false
+  evidence: >-
+    No Caliper Analytics event store, sensor endpoint or IMS Global/1EdTech certification claim
+    was found on any USC host or in the Canvas tenant's public surface.
+- id: scim
+  conforms: false
+  evidence: >-
+    No SCIM 2.0 endpoint (/scim/v2, /ServiceProviderConfig, /ResourceTypes) is public on any USC
+    host. Identity provisioning at USC runs behind the Shibboleth IdP and the ITS service portal,
+    neither of which exposes a public SCIM surface.
+- id: oneroster
+  conforms: false
+  evidence: >-
+    OneRoster is a K-12 rostering standard; no OneRoster endpoint or claim was found on any USC
+    host. Not applicable to USC's higher-education SIS.
+- id: ed-fi
+  conforms: false
+  evidence: >-
+    Ed-Fi is a US K-12 state-education data standard; no Ed-Fi ODS/API deployment or claim was
+    found on any USC host. Not applicable.
+- id: qti
+  conforms: false
+  evidence: >-
+    No QTI assessment item bank, QTI import/export endpoint or 1EdTech QTI certification claim
+    was found on any USC host. Assessment runs inside the Canvas tenant, whose QTI support is
+    Instructure's.
