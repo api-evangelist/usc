@@ -1,4 +1,4 @@
-# University of Southern California (usc)
+# University of Southern California
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,51 +64,120 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The University of Southern California (USC) is a private research university in Los Angeles, California, ranked #59 in the QS World University Rankings 2025. USC does not operate a single centralized public API developer portal; its most concretely documented public web service is the Schedule of Classes (SOC) Web Services API, with additional programmatic and data activity distributed across departmental and research GitHub organizations and library systems.
+The University of Southern California is a private research university in Los Angeles, ranked #59 in the QS World University Rankings 2025. USC operates no central developer portal, publishes no OpenAPI, AsyncAPI or apis.json anywhere on its public surface, and issues no self-service API keys — www.usc.edu serves neither llms.txt nor .well-known/security.txt, and api.usc.edu is a default IIS Windows Server placeholder page last modified in 2019, not an API. What USC does operate, verified live on 2026-08-30, is three genuinely institutional machine surfaces: a Shibboleth SAML 2.0 identity provider whose metadata is published unauthenticated at shibboleth.usc.edu and registered with InCommon as urn:mace:incommon:usc.edu; a DataCite direct membership under its own name that carries eleven repositories and 1.5 million minted DOIs; and the FaceBase craniofacial data hub, whose keyless ERMrest REST API is built and run by USC's own Information Sciences Institute on ISI's Apache-2.0 DERIVA stack. Everything else that looks like a USC API is a vendor's contract running under USC's name and is recorded here as a tenant relationship, never as USC's engineering: Figshare, Ex Libris Primo/Alma, Orange Logic Cortex and Instructure Canvas. The Schedule of Classes Web Services API that this profile previously led with is gone — web-app.usc.edu no longer resolves at all.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/usc/refs/heads/main/apis.yml
-- Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=usc-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · Research · Private Research University · Association of American Universities · United States · California · Los Angeles · Identity Federation · Research Data · Research Repository
 
-## Type
+## University of Southern California on APIs.io
 
-- Index / Consumer / 3rd-Party
+Everything profiled for University of Southern California is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/usc/](https://apis.io/providers/usc/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-Education, Higher Education, University, Research, United States, California, Courses
+- [USC Shibboleth Identity Provider (SAML 2.0 Metadata)](https://apis.io/apis/usc/shibboleth-idp/) — USC's production single sign-on identity provider, operated by USC Information Technology Services on USC's own host, publishing its SAML 2.0 metadata…
+- [FaceBase ERMrest Data API](https://apis.io/apis/usc/facebase-ermrest/) — Keyless, read-only JSON REST API of the FaceBase craniofacial data hub, an NIDCR-funded resource led from USC and engineered by USC's Information Sciences…
+- [USC DataCite DOI Registration (Provider Account)](https://apis.io/apis/usc/datacite-membership/) — USC holds a DataCite direct membership in its own name and mints DOIs for eleven USC repositories under it. GET https://api.datacite.org/providers/usc…
+- [USC Digital Library API (Orange Logic Cortex)](https://apis.io/apis/usc/digital-library-cortex/) — A live, token-gated REST API on USC's own host running Orange Logic's Cortex digital asset platform. GET…
+- [USC Figshare Research Repository (Tenant)](https://apis.io/apis/usc/figshare-repository/) — USC Libraries offers Figshare to USC researchers as its data-output repository for datasets, posters and presentations, at the institution-specific tenant…
+- [USC Libraries Discovery (Ex Libris Primo VE, Tenant)](https://apis.io/apis/usc/primo-discovery/) — USC Libraries' catalog and discovery layer runs on Ex Libris Primo VE as institution view 01USC_INST:01USC at uosc.primo.exlibrisgroup.com. The public Primo…
+- [USC Canvas Learning Management System (Instructure, Tenant)](https://apis.io/apis/usc/canvas-lms/) — USC's learning management system is an Instructure Canvas tenant at usc.instructure.com, verified live 2026-08-30 (200, redirecting to /login/canvas).…
+- [USC Schedule of Classes (SOC) — Web Services API, retired](https://apis.io/apis/usc/schedule-of-classes/) — USC's Schedule of Classes Web Services API, which exposed terms, departments, courses and sections and once powered the online schedule, is retired. Its…
 
-## APIs
+### Published properties
 
-- **USC Schedule of Classes (SOC) Web Services API** — A web service for integrating USC Schedule of Classes content (terms, departments, courses, sections) into other sites and applications.
-  - Docs: https://web-app.usc.edu/web/soc/help
-  - Source docs: https://web-app.usc.edu/web/soc/docs/html/
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans / Rate Limits / FinOps
+#### JSON-LD (1)
 
-- Plans: [plans/usc-plans-pricing.yml](plans/usc-plans-pricing.yml)
-- Rate Limits: [rate-limits/usc-rate-limits.yml](rate-limits/usc-rate-limits.yml)
-- FinOps: [finops/usc-finops.yml](finops/usc-finops.yml)
+Linked-data contexts for the provider's vocabulary.
 
-## Timestamps
+- [Usc Context](https://apis.io/jsonld/usc/usc-context/)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+#### Security (1)
 
-## Common Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- Website: https://www.usc.edu/
-- GitHub (USC IR & Data Science): https://github.com/uscdatascience
-- GitHub (USC Information Sciences Institute): https://github.com/isi-usc-edu
-- LinkedIn: https://www.linkedin.com/school/university-of-southern-california/
-- Twitter/X: https://twitter.com/USC
-- Review: [review.yml](review.yml)
+- [Usc Domain Security](https://apis.io/security/usc/usc-domain-security/)
 
-## Notes
+#### Plans and pricing (1)
 
-- USC has no unified public API developer portal. The SOC Web Services API is documented by USC and a public archive API endpoint pattern (`/ws/soc_archive/soc/api/classes/{dept}/{term}`) has been observed, but the host `web-app.usc.edu` refused connections from this review's network at probe time, so endpoints could not be independently verified live.
-- There is no single official USC-wide GitHub organization; multiple departmental and research labs maintain their own orgs. Two prominent, verified examples are listed above.
-- No endpoints were fabricated. See [review.yml](review.yml) for per-URL probe status.
+Published plans, tiers and prices.
 
-## Maintainers
+- [Usc Plans Pricing](https://apis.io/plans/usc/usc-plans-pricing/)
 
-- Kin Lane — kin@apievangelist.com
+#### Rate limits (1)
+
+Published request limits.
+
+- [Usc Rate Limits](https://apis.io/rate-limits/usc/usc-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Usc Finops](https://apis.io/finops/usc/usc-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.usc.edu/)
+- [Documentation](https://catalogue.usc.edu/)
+- [API reference](https://www.facebase.org/ermrest/catalog/1/schema)
+- [Support](https://itservices.usc.edu/)
+- [Blog](https://news.usc.edu/)
+- [Privacy policy](https://www.usc.edu/privacy-notice/)
+- [GitHub](https://github.com/informatics-isi-edu)
+
+## API Evangelist rating
+
+**Kin Score 21.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 14.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 15.8 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/usc/](https://apis.io/providers/usc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for University of Southern California: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/usc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
